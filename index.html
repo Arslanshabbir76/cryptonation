@@ -57,7 +57,7 @@
       border-bottom: 1px solid rgba(88, 130, 255, 0.25);
     }
 
-    /* ========== BRAND LOGO - NO ICON, BIGGER PNG, TITLE "Crypto Nation" ========== */
+    /* ========== BRAND LOGO ========== */
     .brand-logo {
       display: flex;
       align-items: center;
@@ -83,7 +83,6 @@
       height: 100%;
       object-fit: cover;
     }
-    /* fallback if image missing */
     .brand-icon .fallback-icon {
       font-size: 2rem;
       color: #3b82f6;
@@ -97,7 +96,6 @@
       color: transparent;
       letter-spacing: -0.5px;
     }
-    /* removed any extra icon (fa-cube) from title */
 
     .trust-badge {
       background: rgba(18, 25, 45, 0.7);
@@ -109,7 +107,7 @@
       border: 1px solid rgba(88, 130, 255, 0.4);
     }
 
-    /* ========== MOVING CIRCULAR LOGO ABOVE CARD (video) unchanged ========== */
+    /* ========== MOVING CIRCULAR LOGO ABOVE CARD ========== */
     .logo-above-card {
       display: flex;
       justify-content: center;
@@ -237,18 +235,7 @@
       background: linear-gradient(95deg, #2f9ef5, #4f7aff);
     }
 
-    .countdown-timer {
-      margin-top: 0.8rem;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 40px;
-      padding: 0.5rem;
-      text-align: center;
-      font-weight: 600;
-      font-size: 0.8rem;
-      border: 1px solid #facc15;
-    }
-
-    /* overlapping images (pic1, pic2) card half overlap */
+    /* overlapping images */
     .cascading-duo {
       position: relative;
       display: flex;
@@ -428,7 +415,7 @@
 <body>
 <div class="container">
 
-  <!-- ========== TOP NAVBAR: NO ICON, BIGGER LOGO, TITLE "Crypto Nation" ========== -->
+  <!-- TOP NAVBAR -->
   <div class="navbar">
     <div class="brand-logo">
       <div class="brand-icon">
@@ -443,7 +430,7 @@
     </div>
   </div>
 
-  <!-- ========== MOVING/ANIMATED CIRCULAR LOGO (video/mp4) - UNCHANGED ========== -->
+  <!-- MOVING CIRCULAR LOGO -->
   <div class="logo-above-card">
     <div class="circle-logo" id="circleLogoContainer">
       <video id="logoVideoMP4" autoplay loop muted playsinline>
@@ -463,16 +450,14 @@
         <p><i class="fas fa-check-circle"></i> Defined risk.</p>
         <p><i class="fas fa-check-circle"></i> Capital preservation first.</p>
       </div>
+      <!-- Telegram Button - NO TIMER, INSTANT REDIRECT -->
       <button id="telegramRedirectBtn" class="telegram-btn">
         <i class="fab fa-telegram-plane"></i> JOIN TELEGRAM
       </button>
-      <div id="countdownDisplay" class="countdown-timer" style="display: none;">
-        <span id="timerSeconds">5</span> seconds — redirecting to Telegram channel...
-      </div>
     </div>
   </div>
 
-  <!-- OVERLAPPING IMAGES: pic1.jpeg and pic2.jpeg -->
+  <!-- OVERLAPPING IMAGES -->
   <div class="cascading-duo">
     <div class="img-overlap-card">
       <img src="images/pic1.jpeg" alt="Crypto technical analysis" onerror="this.onerror=null; this.src='https://placehold.co/300x240/132036/3b82f6?text=PIC1+Preview';">
@@ -484,7 +469,7 @@
     </div>
   </div>
 
-  <!-- stats row -->
+  <!-- STATS ROW -->
   <div class="stats-row">
     <div class="stat-item">
       <div class="stat-number">87%</div>
@@ -503,7 +488,7 @@
   <!-- SOCIAL ICONS SECTION -->
   <div class="social-footer">
     <div class="social-icons">
-      <a href="https://t.me/+XRlJ3bIMDsUxYWNk" class="social-icon" id="telegramIcon" target="_blank" rel="noopener noreferrer">
+      <a href="https://t.me/+XRlJ3bIMDsUxYWNk" class="social-icon" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-telegram"></i>
       </a>
       <a href="#" class="social-icon" id="instagramLink" target="_blank" rel="noopener noreferrer">
@@ -535,69 +520,20 @@
 
 <script>
   (function() {
-    // ---------- TELEGRAM BUTTON with 5-sec countdown ----------
-    const btn = document.getElementById('telegramRedirectBtn');
-    const countdownDiv = document.getElementById('countdownDisplay');
-    const timerSpan = document.getElementById('timerSeconds');
-    let countdownInterval = null;
-    let isActive = false;
-
-    // ✅ CORRECT TELEGRAM INVITE LINK INSERTED
+    // Your Telegram invite link
     const TELEGRAM_LINK = 'https://t.me/+XRlJ3bIMDsUxYWNk';
-
-    function resetTelegramButton() {
-      if (countdownInterval) {
-        clearInterval(countdownInterval);
-        countdownInterval = null;
-      }
-      isActive = false;
-      if (countdownDiv) countdownDiv.style.display = 'none';
-      if (btn) {
-        btn.disabled = false;
-        btn.style.opacity = '1';
-        btn.style.cursor = 'pointer';
-        btn.innerHTML = '<i class="fab fa-telegram-plane"></i> JOIN TELEGRAM';
-      }
-    }
-
-    function startCountdown() {
-      if (isActive) return;
-      let secondsLeft = 5;
-      if (timerSpan) timerSpan.innerText = secondsLeft;
-      if (countdownDiv) countdownDiv.style.display = 'block';
-      if (btn) {
-        btn.disabled = true;
-        btn.style.opacity = '0.7';
-        btn.style.cursor = 'default';
-      }
-      isActive = true;
-
-      countdownInterval = setInterval(() => {
-        secondsLeft -= 1;
-        if (timerSpan) timerSpan.innerText = secondsLeft;
-        if (btn && secondsLeft > 0) {
-          btn.innerHTML = `<i class="fas fa-hourglass-half"></i> REDIRECT IN ${secondsLeft}s`;
-        }
-        if (secondsLeft <= 0) {
-          if (countdownInterval) clearInterval(countdownInterval);
-          countdownInterval = null;
-          window.open(TELEGRAM_LINK, '_blank');
-          resetTelegramButton();
-          if (countdownDiv) countdownDiv.style.display = 'none';
-          if (btn) btn.innerHTML = '<i class="fab fa-telegram-plane"></i> JOIN TELEGRAM';
-        }
-      }, 1000);
-    }
-
+    
+    // Main Telegram Button - Instant redirect (NO TIMER)
+    const btn = document.getElementById('telegramRedirectBtn');
     if (btn) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        if (isActive) return;
-        startCountdown();
+        // Instant redirect to Telegram
+        window.open(TELEGRAM_LINK, '_blank');
       });
     }
-
-    // moving circular video fallback
+    
+    // Video fallback
     const videoEl = document.getElementById('logoVideoMP4');
     if (videoEl) {
       videoEl.onerror = function() {
@@ -607,29 +543,19 @@
         }
       };
     }
-
-    // social links placeholders (update later)
-    const INSTA_URL = '#';
-    const FACEBOOK_URL = '#';
-    const TWITTER_URL = '#';
-    const DISCORD_URL = '#';
-    const YOUTUBE_URL = '#';
-
+    
+    // Social media links (update later with your actual links)
     const insta = document.getElementById('instagramLink');
     const fb = document.getElementById('facebookLink');
     const twitter = document.getElementById('twitterLink');
     const discord = document.getElementById('discordLink');
     const youtube = document.getElementById('youtubeLink');
-
-    if (insta) insta.href = INSTA_URL;
-    if (fb) fb.href = FACEBOOK_URL;
-    if (twitter) twitter.href = TWITTER_URL;
-    if (discord) discord.href = DISCORD_URL;
-    if (youtube) youtube.href = YOUTUBE_URL;
     
-    // Telegram icon in social bar gets the same link
-    const telegramIcon = document.getElementById('telegramIcon');
-    if (telegramIcon) telegramIcon.href = TELEGRAM_LINK;
+    if (insta) insta.href = '#';
+    if (fb) fb.href = '#';
+    if (twitter) twitter.href = '#';
+    if (discord) discord.href = '#';
+    if (youtube) youtube.href = '#';
   })();
 </script>
 </body>
