@@ -503,6 +503,9 @@
   <!-- SOCIAL ICONS SECTION -->
   <div class="social-footer">
     <div class="social-icons">
+      <a href="https://t.me/+XRlJ3bIMDsUxYWNk" class="social-icon" id="telegramIcon" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-telegram"></i>
+      </a>
       <a href="#" class="social-icon" id="instagramLink" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-instagram"></i>
       </a>
@@ -539,8 +542,8 @@
     let countdownInterval = null;
     let isActive = false;
 
-    // 🔁 IMPORTANT: REPLACE WITH YOUR REAL TELEGRAM CHANNEL INVITE LINK
-    const TELEGRAM_LINK = 'https://t.me/cryptohub_channel';
+    // ✅ CORRECT TELEGRAM INVITE LINK INSERTED
+    const TELEGRAM_LINK = 'https://t.me/+XRlJ3bIMDsUxYWNk';
 
     function resetTelegramButton() {
       if (countdownInterval) {
@@ -623,6 +626,10 @@
     if (twitter) twitter.href = TWITTER_URL;
     if (discord) discord.href = DISCORD_URL;
     if (youtube) youtube.href = YOUTUBE_URL;
+    
+    // Telegram icon in social bar gets the same link
+    const telegramIcon = document.getElementById('telegramIcon');
+    if (telegramIcon) telegramIcon.href = TELEGRAM_LINK;
   })();
 </script>
 </body>
