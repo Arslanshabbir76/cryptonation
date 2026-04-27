@@ -235,6 +235,35 @@
       background: linear-gradient(95deg, #2f9ef5, #4f7aff);
     }
 
+    /* Timer Bar */
+    .timer-container {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .timer-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+    }
+    .timer-progress {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #1f8ded, #3468ff);
+      border-radius: 10px;
+      animation: shrink 5s linear forwards;
+    }
+    @keyframes shrink {
+      from { width: 100%; }
+      to { width: 0%; }
+    }
+    .timer-text {
+      font-size: 0.75rem;
+      color: #a5b4db;
+    }
+
     /* overlapping images */
     .cascading-duo {
       position: relative;
@@ -450,10 +479,16 @@
         <p><i class="fas fa-check-circle"></i> Defined risk.</p>
         <p><i class="fas fa-check-circle"></i> Capital preservation first.</p>
       </div>
-      <!-- Telegram Button - NO TIMER, INSTANT REDIRECT -->
+      <!-- Telegram Button with Timer Display -->
       <button id="telegramRedirectBtn" class="telegram-btn">
         <i class="fab fa-telegram-plane"></i> JOIN TELEGRAM
       </button>
+      <div class="timer-container" id="timerContainer">
+        <div class="timer-bar">
+          <div class="timer-progress" id="timerProgress"></div>
+        </div>
+        <div class="timer-text" id="timerText">⏳ Auto-redirecting in 5 seconds...</div>
+      </div>
     </div>
   </div>
 
@@ -523,15 +558,51 @@
     // Your Telegram invite link
     const TELEGRAM_LINK = 'https://t.me/+XRlJ3bIMDsUxYWNk';
     
-    // Main Telegram Button - Instant redirect (NO TIMER)
+    let redirectTimeout = null;
+    let isRedirected = false;
+    
+    // Function to redirect to Telegram
+    function redirectToTelegram() {
+      if (isRedirected) return;
+      isRedirected = true;
+      
+      // Clear the timeout if it exists
+      if (redirectTimeout) {
+        clearTimeout(redirectTimeout);
+      }
+      
+      // Open Telegram link in new tab
+      window.open(TELEGRAM_LINK, '_blank');
+    }
+    
+    // Main Telegram Button - Click to redirect instantly
     const btn = document.getElementById('telegramRedirectBtn');
     if (btn) {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
-        // Instant redirect to Telegram
-        window.open(TELEGRAM_LINK, '_blank');
+        if (isRedirected) return;
+        redirectToTelegram();
       });
     }
+    
+    // Auto-redirect after 5 seconds (even if user doesn't click)
+    redirectTimeout = setTimeout(() => {
+      if (!isRedirected) {
+        redirectToTelegram();
+      }
+    }, 5000);
+    
+    // Optional: Update timer text with countdown
+    let secondsLeft = 5;
+    const timerText = document.getElementById('timerText');
+    const countdownInterval = setInterval(() => {
+      secondsLeft--;
+      if (timerText && secondsLeft > 0 && !isRedirected) {
+        timerText.innerHTML = `⏳ Auto-redirecting in ${secondsLeft} second${secondsLeft !== 1 ? 's' : ''}...`;
+      } else if (secondsLeft <= 0 || isRedirected) {
+        clearInterval(countdownInterval);
+      }
+    }, 1000);
     
     // Video fallback
     const videoEl = document.getElementById('logoVideoMP4');
