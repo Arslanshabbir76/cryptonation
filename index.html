@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Crypto Nation | Discipline First · Private Signals</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 10% 20%, #0a0c18, #02040c);
+      color: #eef2ff;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* grain texture for depth */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjciIG51bU9jdGF2ZXM9IjMiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjZikiIG9wYWNpdHk9IjAuMDgiLz48L3N2Zz4=');
+      background-repeat: repeat;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* top navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(88, 130, 255, 0.25);
+    }
+
+    /* ========== BRAND LOGO - NO ICON, BIGGER PNG, TITLE "Crypto Nation" ========== */
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-icon {
+      width: 60px;
+      height: 60px;
+      background: #0e1324;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+      transition: transform 0.2s ease;
+    }
+    .brand-icon:hover {
+      transform: scale(1.02);
+    }
+    .brand-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* fallback if image missing */
+    .brand-icon .fallback-icon {
+      font-size: 2rem;
+      color: #3b82f6;
+    }
+    .brand-name h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, #7faaff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    /* removed any extra icon (fa-cube) from title */
+
+    .trust-badge {
+      background: rgba(18, 25, 45, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 60px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(88, 130, 255, 0.4);
+    }
+
+    /* ========== MOVING CIRCULAR LOGO ABOVE CARD (video) unchanged ========== */
+    .logo-above-card {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .circle-logo {
+      width: 110px;
+      height: 110px;
+      background: #0e1324;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6), 0 0 0 3px rgba(56, 189, 248, 0.4), 0 0 0 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+      overflow: hidden;
+    }
+
+    .circle-logo video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .circle-logo .logo-fallback {
+      font-size: 2.8rem;
+      color: #3b82f6;
+      background: #0a0f1a;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    /* spotlight card */
+    .spotlight-section {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .spotlight-card {
+      max-width: 640px;
+      width: 100%;
+      background: rgba(6, 10, 20, 0.8);
+      backdrop-filter: blur(14px);
+      border-radius: 2.5rem;
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      box-shadow: 0 30px 40px -12px rgba(0, 0, 0, 0.7);
+      padding: 2rem 2rem 2rem 2rem;
+      transition: transform 0.25s ease, border-color 0.2s;
+    }
+
+    .spotlight-card:hover {
+      border-color: #3b82f6;
+      transform: translateY(-3px);
+    }
+
+    .card-badge {
+      background: rgba(43, 110, 240, 0.2);
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      border: 1px solid rgba(43, 110, 240, 0.5);
+      margin-bottom: 1.2rem;
+    }
+
+    .spotlight-card h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.3;
+      background: linear-gradient(120deg, #ffffff, #a5c6ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .feature-list {
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .feature-list p {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+
+    .feature-list i {
+      color: #2ecc71;
+    }
+
+    .telegram-btn {
+      background: linear-gradient(95deg, #1f8ded, #3468ff);
+      width: 100%;
+      padding: 0.9rem 0;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      border: none;
+      color: white;
+      transition: all 0.2s;
+      box-shadow: 0 6px 14px rgba(31, 141, 237, 0.3);
+      margin-top: 1rem;
+    }
+
+    .telegram-btn:hover {
+      transform: scale(1.01);
+      background: linear-gradient(95deg, #2f9ef5, #4f7aff);
+    }
+
+    .countdown-timer {
+      margin-top: 0.8rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 40px;
+      padding: 0.5rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.8rem;
+      border: 1px solid #facc15;
+    }
+
+    /* overlapping images (pic1, pic2) card half overlap */
+    .cascading-duo {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: -2.2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      z-index: 10;
+    }
+
+    .img-overlap-card {
+      width: 210px;
+      background: rgba(10, 15, 28, 0.85);
+      backdrop-filter: blur(12px);
+      border-radius: 1.8rem;
+      padding: 0.65rem;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      transition: all 0.3s cubic-bezier(0.2, 0.85, 0.4, 1);
+      box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.5);
+    }
+
+    .img-overlap-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: #3b82f6;
+      background: rgba(23, 42, 80, 0.7);
+      box-shadow: 0 20px 30px -8px rgba(59, 130, 246, 0.3);
+    }
+
+    .img-overlap-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 1.4rem;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-caption {
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+      color: #b9c7f0;
+    }
+
+    /* stats row */
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      background: rgba(12, 16, 28, 0.7);
+      border-radius: 2rem;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0 1.5rem;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      backdrop-filter: blur(4px);
+    }
+
+    .stat-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #3b82f6;
+    }
+
+    /* social footer */
+    .social-footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding: 1rem 0 1.2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 2.2rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0;
+    }
+
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background: rgba(20, 27, 45, 0.7);
+      backdrop-filter: blur(6px);
+      border-radius: 50%;
+      font-size: 1.8rem;
+      color: #cfdeff;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(88, 130, 255, 0.3);
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-6px) scale(1.08);
+      background: linear-gradient(145deg, #1f2a48, #0f142a);
+      border-color: #3b82f6;
+      color: white;
+      box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+    }
+
+    .social-icon:hover .fa-instagram { color: #e4405f; }
+    .social-icon:hover .fa-facebook-f { color: #1877f2; }
+    .social-icon:hover .fa-twitter { color: #1da1f2; }
+    .social-icon:hover .fa-discord { color: #5865f2; }
+
+    .footer-text {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #7a86a8;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        padding: 1rem;
+      }
+      .spotlight-card h2 {
+        font-size: 1.5rem;
+      }
+      .cascading-duo {
+        gap: 1rem;
+        margin-top: -1rem;
+      }
+      .img-overlap-card {
+        width: 160px;
+      }
+      .circle-logo {
+        width: 85px;
+        height: 85px;
+      }
+      .brand-icon {
+        width: 50px;
+        height: 50px;
+      }
+      .brand-name h2 {
+        font-size: 1.6rem;
+      }
+      .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .img-overlap-card {
+        width: 140px;
+      }
+      .cascading-duo {
+        margin-top: -0.5rem;
+      }
+      .brand-icon {
+        width: 45px;
+        height: 45px;
+      }
+      .brand-name h2 {
+        font-size: 1.4rem;
+      }
+      .social-icons {
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ========== TOP NAVBAR: NO ICON, BIGGER LOGO, TITLE "Crypto Nation" ========== -->
+  <div class="navbar">
+    <div class="brand-logo">
+      <div class="brand-icon">
+        <img src="images/logo.png" alt="Crypto Nation Logo" onerror="this.onerror=null; this.parentElement.innerHTML = '<i class=\'fas fa-chart-line fallback-icon\'></i>'">
+      </div>
+      <div class="brand-name">
+        <h2>Crypto Nation</h2>
+      </div>
+    </div>
+    <div class="trust-badge">
+      <i class="fas fa-shield-alt"></i> Trusted by 16,300+ disciplined traders
+    </div>
+  </div>
+
+  <!-- ========== MOVING/ANIMATED CIRCULAR LOGO (video/mp4) - UNCHANGED ========== -->
+  <div class="logo-above-card">
+    <div class="circle-logo" id="circleLogoContainer">
+      <video id="logoVideoMP4" autoplay loop muted playsinline>
+        <source src="images/logo.mp4" type="video/mp4">
+        <div class="logo-fallback"><i class="fas fa-chart-line"></i></div>
+      </video>
+    </div>
+  </div>
+
+  <!-- MAIN SPOTLIGHT CARD -->
+  <div class="spotlight-section">
+    <div class="spotlight-card">
+      <div class="card-badge"><i class="fas fa-gem"></i> Private Trading Floor</div>
+      <h2>A Private Crypto Trading Environment <br>built on <span style="color:#7aaaff;">discipline, not promises.</span></h2>
+      <div class="feature-list">
+        <p><i class="fas fa-check-circle"></i> Structured entries.</p>
+        <p><i class="fas fa-check-circle"></i> Defined risk.</p>
+        <p><i class="fas fa-check-circle"></i> Capital preservation first.</p>
+      </div>
+      <button id="telegramRedirectBtn" class="telegram-btn">
+        <i class="fab fa-telegram-plane"></i> JOIN TELEGRAM
+      </button>
+      <div id="countdownDisplay" class="countdown-timer" style="display: none;">
+        <span id="timerSeconds">5</span> seconds — redirecting to Telegram channel...
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAPPING IMAGES: pic1.jpeg and pic2.jpeg -->
+  <div class="cascading-duo">
+    <div class="img-overlap-card">
+      <img src="images/pic1.jpeg" alt="Crypto technical analysis" onerror="this.onerror=null; this.src='https://placehold.co/300x240/132036/3b82f6?text=PIC1+Preview';">
+      <div class="img-caption">📈 technical edge</div>
+    </div>
+    <div class="img-overlap-card">
+      <img src="images/pic2.jpeg" alt="Trading discipline signals" onerror="this.onerror=null; this.src='https://placehold.co/300x240/0f172f/60a5fa?text=PIC2+Preview';">
+      <div class="img-caption">⚡ disciplined execution</div>
+    </div>
+  </div>
+
+  <!-- stats row -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-number">87%</div>
+      <div>win rate (VIP)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">24/7</div>
+      <div>real-time analysis</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">16.3k+</div>
+      <div>traders community</div>
+    </div>
+  </div>
+
+  <!-- SOCIAL ICONS SECTION -->
+  <div class="social-footer">
+    <div class="social-icons">
+      <a href="#" class="social-icon" id="instagramLink" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="#" class="social-icon" id="facebookLink" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" class="social-icon" id="twitterLink" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" class="social-icon" id="discordLink" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-discord"></i>
+      </a>
+      <a href="#" class="social-icon" id="youtubeLink" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+    <div class="footer-text">
+      <i class="fas fa-link"></i> connect with us — official community channels
+    </div>
+  </div>
+
+  <div class="footer-text" style="margin-top: 0.5rem;">
+    <p><i class="fas fa-lock"></i> disciplined trading environment · not financial advice</p>
+    <p style="margin-top: 6px;">© Crypto Nation — built on discipline, not promises</p>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ---------- TELEGRAM BUTTON with 5-sec countdown ----------
+    const btn = document.getElementById('telegramRedirectBtn');
+    const countdownDiv = document.getElementById('countdownDisplay');
+    const timerSpan = document.getElementById('timerSeconds');
+    let countdownInterval = null;
+    let isActive = false;
+
+    // 🔁 IMPORTANT: REPLACE WITH YOUR REAL TELEGRAM CHANNEL INVITE LINK
+    const TELEGRAM_LINK = 'https://t.me/cryptohub_channel';
+
+    function resetTelegramButton() {
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+      isActive = false;
+      if (countdownDiv) countdownDiv.style.display = 'none';
+      if (btn) {
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btn.innerHTML = '<i class="fab fa-telegram-plane"></i> JOIN TELEGRAM';
+      }
+    }
+
+    function startCountdown() {
+      if (isActive) return;
+      let secondsLeft = 5;
+      if (timerSpan) timerSpan.innerText = secondsLeft;
+      if (countdownDiv) countdownDiv.style.display = 'block';
+      if (btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.7';
+        btn.style.cursor = 'default';
+      }
+      isActive = true;
+
+      countdownInterval = setInterval(() => {
+        secondsLeft -= 1;
+        if (timerSpan) timerSpan.innerText = secondsLeft;
+        if (btn && secondsLeft > 0) {
+          btn.innerHTML = `<i class="fas fa-hourglass-half"></i> REDIRECT IN ${secondsLeft}s`;
+        }
+        if (secondsLeft <= 0) {
+          if (countdownInterval) clearInterval(countdownInterval);
+          countdownInterval = null;
+          window.open(TELEGRAM_LINK, '_blank');
+          resetTelegramButton();
+          if (countdownDiv) countdownDiv.style.display = 'none';
+          if (btn) btn.innerHTML = '<i class="fab fa-telegram-plane"></i> JOIN TELEGRAM';
+        }
+      }, 1000);
+    }
+
+    if (btn) {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (isActive) return;
+        startCountdown();
+      });
+    }
+
+    // moving circular video fallback
+    const videoEl = document.getElementById('logoVideoMP4');
+    if (videoEl) {
+      videoEl.onerror = function() {
+        const container = document.getElementById('circleLogoContainer');
+        if (container) {
+          container.innerHTML = `<div class="logo-fallback"><i class="fas fa-chart-line"></i></div>`;
+        }
+      };
+    }
+
+    // social links placeholders (update later)
+    const INSTA_URL = '#';
+    const FACEBOOK_URL = '#';
+    const TWITTER_URL = '#';
+    const DISCORD_URL = '#';
+    const YOUTUBE_URL = '#';
+
+    const insta = document.getElementById('instagramLink');
+    const fb = document.getElementById('facebookLink');
+    const twitter = document.getElementById('twitterLink');
+    const discord = document.getElementById('discordLink');
+    const youtube = document.getElementById('youtubeLink');
+
+    if (insta) insta.href = INSTA_URL;
+    if (fb) fb.href = FACEBOOK_URL;
+    if (twitter) twitter.href = TWITTER_URL;
+    if (discord) discord.href = DISCORD_URL;
+    if (youtube) youtube.href = YOUTUBE_URL;
+  })();
+</script>
+</body>
+</html>
