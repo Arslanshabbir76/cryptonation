@@ -4,22 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Crypto Nation | Discipline First · Private Signals</title>
-    <!-- ========== META PIXEL (FACEBOOK PIXEL) ========== -->
-  <script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1304985198242898');
-  fbq('track', 'PageView');
-  </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1304985198242898&ev=PageView&noscript=1"/>
-  </noscript>
+<!-- ========== META PIXEL (FACEBOOK PIXEL) ========== -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1304985198242898');
+fbq('track', 'PageView');
+</script>
+
+<!-- Event Tracking Code -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Track Telegram Button Click
+  const telegramBtn = document.getElementById('telegramRedirectBtn');
+  if (telegramBtn) {
+    telegramBtn.addEventListener('click', function() {
+      fbq('track', 'Lead', {
+        content_name: 'Join Telegram Channel',
+        content_category: 'Crypto Signals'
+      });
+      console.log('Facebook Event: Lead tracked');
+    });
+  }
+  
+  // Track Social Media Clicks
+  const socialIcons = document.querySelectorAll('.social-icon');
+  socialIcons.forEach(icon => {
+    icon.addEventListener('click', function() {
+      let platformName = 'Social Media';
+      if (icon.querySelector('.fa-telegram')) platformName = 'Telegram';
+      else if (icon.querySelector('.fa-instagram')) platformName = 'Instagram';
+      else if (icon.querySelector('.fa-facebook')) platformName = 'Facebook';
+      else if (icon.querySelector('.fa-twitter')) platformName = 'Twitter';
+      else if (icon.querySelector('.fa-discord')) platformName = 'Discord';
+      
+      fbq('track', 'Contact', {
+        contact_method: platformName
+      });
+      console.log('Facebook Event: Contact tracked for', platformName);
+    });
+  });
+});
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1304985198242898&ev=PageView&noscript=1"/>
+</noscript>
+<!-- ========== END FACEBOOK PIXEL ========== -->
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKWFPH9PHB"></script>
   <script>
