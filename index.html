@@ -580,56 +580,78 @@
   </div>
 </div>
 
+<!-- ✅ FIXED SCRIPT - Button Click Working -->
 <script>
   (function() {
+    console.log("Script loaded - waiting for DOM...");
+    
     // Your Telegram invite link
     const TELEGRAM_LINK = 'https://t.me/+XRlJ3bIMDsUxYWNk';
-    
-    let redirectTimeout = null;
     let isRedirected = false;
+    let redirectTimeout = null;
     
-    // Function to redirect to Telegram
     function redirectToTelegram() {
-      if (isRedirected) return;
+      if (isRedirected) {
+        console.log("Already redirected, skipping...");
+        return;
+      }
       isRedirected = true;
+      console.log("Redirecting to Telegram...");
       
-      // Clear the timeout if it exists
       if (redirectTimeout) {
         clearTimeout(redirectTimeout);
       }
       
-      // Open Telegram link in new tab
       window.open(TELEGRAM_LINK, '_blank');
     }
     
-    // Main Telegram Button - Click to redirect instantly
-    const btn = document.getElementById('telegramRedirectBtn');
-    if (btn) {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (isRedirected) return;
-        redirectToTelegram();
-      });
+    // Ensure DOM is fully loaded before accessing button
+    function initTelegramButton() {
+      const btn = document.getElementById('telegramRedirectBtn');
+      if (btn) {
+        console.log("Telegram button found - attaching click listener");
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          console.log("Button clicked!");
+          redirectToTelegram();
+        });
+      } else {
+        console.log("Button not found! Retrying in 500ms...");
+        setTimeout(initTelegramButton, 500);
+        return;
+      }
+      
+      // Auto-redirect after 2 seconds
+      redirectTimeout = setTimeout(function() {
+        if (!isRedirected) {
+          console.log("Auto-redirect triggered after 2 seconds");
+          redirectToTelegram();
+        }
+      }, 2000);
+      
+      // Update timer text
+      let secondsLeft = 2;
+      const timerText = document.getElementById('timerText');
+      if (timerText) {
+        timerText.innerHTML = `⏳ Auto-redirecting in ${secondsLeft} seconds...`;
+      }
+      
+      const countdownInterval = setInterval(function() {
+        secondsLeft--;
+        if (timerText && secondsLeft > 0 && !isRedirected) {
+          timerText.innerHTML = `⏳ Auto-redirecting in ${secondsLeft} second${secondsLeft !== 1 ? 's' : ''}...`;
+        } else if (secondsLeft <= 0 || isRedirected) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
     }
     
-    // Auto-redirect after 5 seconds (even if user doesn't click)
-    redirectTimeout = setTimeout(() => {
-      if (!isRedirected) {
-        redirectToTelegram();
-      }
-    }, 2000);
-    
-    // Optional: Update timer text with countdown
-    let secondsLeft = 2;
-    const timerText = document.getElementById('timerText');
-    const countdownInterval = setInterval(() => {
-      secondsLeft--;
-      if (timerText && secondsLeft > 0 && !isRedirected) {
-        timerText.innerHTML = `⏳ Auto-redirecting in ${secondsLeft} second${secondsLeft !== 1 ? 's' : ''}...`;
-      } else if (secondsLeft <= 0 || isRedirected) {
-        clearInterval(countdownInterval);
-      }
-    }, 1000);
+    // Start the initialization
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTelegramButton);
+    } else {
+      initTelegramButton();
+    }
     
     // Video fallback
     const videoEl = document.getElementById('logoVideoMP4');
@@ -642,7 +664,7 @@
       };
     }
     
-    // Social media links (update later with your actual links)
+    // Social media links
     const insta = document.getElementById('instagramLink');
     const fb = document.getElementById('facebookLink');
     const twitter = document.getElementById('twitterLink');
