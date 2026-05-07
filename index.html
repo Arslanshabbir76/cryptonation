@@ -587,30 +587,48 @@
     
     // Your Telegram invite link
     const TELEGRAM_LINK = 'https://t.me/+XRlJ3bIMDsUxYWNk';
-    let isRedirected = false;
     let redirectTimeout = null;
     
+    // Flag to track if redirect has happened
+    let hasRedirected = false;
+    
     function redirectToTelegram() {
-      if (isRedirected) {
-        console.log("Already redirected, skipping...");
+      if (hasRedirected) {
+        console.log("Already redirected this session, but resetting flag for next click");
+        // Reset flag so button can be clicked again after redirect
+        hasRedirected = false;
         return;
       }
-      isRedirected = true;
+      
       console.log("Redirecting to Telegram...");
+      hasRedirected = true;
       
       if (redirectTimeout) {
         clearTimeout(redirectTimeout);
+        redirectTimeout = null;
       }
       
       window.open(TELEGRAM_LINK, '_blank');
+      
+      // Reset flag after 1 second so user can click again (if they return to the page)
+      setTimeout(function() {
+        if (hasRedirected) {
+          console.log("Resetting redirect flag - button will work again");
+          hasRedirected = false;
+        }
+      }, 1000);
     }
     
-    // Ensure DOM is fully loaded before accessing button
+    // Function to initialize button
     function initTelegramButton() {
       const btn = document.getElementById('telegramRedirectBtn');
       if (btn) {
         console.log("Telegram button found - attaching click listener");
-        btn.addEventListener('click', function(e) {
+        // Remove existing listeners to avoid duplicates
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        
+        newBtn.addEventListener('click', function(e) {
           e.preventDefault();
           console.log("Button clicked!");
           redirectToTelegram();
@@ -621,9 +639,14 @@
         return;
       }
       
-      // Auto-redirect after 2 seconds
+      // Clear any existing timeout
+      if (redirectTimeout) {
+        clearTimeout(redirectTimeout);
+      }
+      
+      // Auto-redirect after 2 seconds (only if not already redirected)
       redirectTimeout = setTimeout(function() {
-        if (!isRedirected) {
+        if (!hasRedirected) {
           console.log("Auto-redirect triggered after 2 seconds");
           redirectToTelegram();
         }
@@ -638,9 +661,9 @@
       
       const countdownInterval = setInterval(function() {
         secondsLeft--;
-        if (timerText && secondsLeft > 0 && !isRedirected) {
+        if (timerText && secondsLeft > 0 && !hasRedirected) {
           timerText.innerHTML = `⏳ Auto-redirecting in ${secondsLeft} second${secondsLeft !== 1 ? 's' : ''}...`;
-        } else if (secondsLeft <= 0 || isRedirected) {
+        } else if (secondsLeft <= 0 || hasRedirected) {
           clearInterval(countdownInterval);
         }
       }, 1000);
@@ -664,7 +687,7 @@
       };
     }
     
-    // Social media links
+    // Social media links (update later with your actual links)
     const insta = document.getElementById('instagramLink');
     const fb = document.getElementById('facebookLink');
     const twitter = document.getElementById('twitterLink');
