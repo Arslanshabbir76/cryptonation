@@ -5,25 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Crypto Nation | Discipline First · Private Signals</title>
   
- <!-- ========== META PIXEL (FACEBOOK PIXEL) ========== -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1565029585624007');
-fbq('track', 'PageView');
-</script>
-<noscript>
-  <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1565029585624007&ev=PageView&noscript=1"/>
-</noscript>
-<!-- ========== END META PIXEL ========== -->
+  <!-- ========== META PIXEL (FACEBOOK PIXEL) ========== -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1565029585624007');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1565029585624007&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- ========== END META PIXEL ========== -->
   
-  <!-- Google Analytics (if you have) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-WKWFPH9PHB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -31,9 +31,11 @@ fbq('track', 'PageView');
     gtag('js', new Date());
     gtag('config', 'G-WKWFPH9PHB');
   </script>
+  
   <!-- Google Fonts + Font Awesome 6 -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
   <style>
     * {
       margin: 0;
@@ -238,59 +240,6 @@ fbq('track', 'PageView');
       color: #2ecc71;
     }
 
-    .telegram-btn {
-      background: linear-gradient(95deg, #1f8ded, #3468ff);
-      width: 100%;
-      padding: 0.9rem 0;
-      border-radius: 60px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      cursor: pointer;
-      border: none;
-      color: white;
-      transition: all 0.2s;
-      box-shadow: 0 6px 14px rgba(31, 141, 237, 0.3);
-      margin-top: 1rem;
-    }
-
-    .telegram-btn:hover {
-      transform: scale(1.01);
-      background: linear-gradient(95deg, #2f9ef5, #4f7aff);
-    }
-
-    /* Timer Bar */
-    .timer-container {
-      margin-top: 1rem;
-      text-align: center;
-    }
-    .timer-bar {
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 0.5rem;
-    }
-    .timer-progress {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #1f8ded, #3468ff);
-      border-radius: 10px;
-      animation: shrink 5s linear forwards;
-    }
-    @keyframes shrink {
-      from { width: 100%; }
-      to { width: 0%; }
-    }
-    .timer-text {
-      font-size: 0.75rem;
-      color: #a5b4db;
-    }
-
     /* overlapping images */
     .cascading-duo {
       position: relative;
@@ -466,158 +415,159 @@ fbq('track', 'PageView');
         gap: 1rem;
       }
     }
+
     /* ========== OPTIMIZED TELEGRAM SECTION STYLES ========== */
+    .telegram-optimized-section {
+      margin-top: 1rem;
+    }
 
-.telegram-optimized-section {
-  margin-top: 1rem;
-}
+    /* Social Proof Badge */
+    .social-proof {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 60px;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      animation: pulseGreen 2s infinite;
+    }
 
-/* Social Proof Badge */
-.social-proof {
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  border-radius: 60px;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-  animation: pulseGreen 2s infinite;
-}
+    .social-proof i {
+      color: #10b981;
+      margin-right: 6px;
+    }
 
-.social-proof i {
-  color: #10b981;
-  margin-right: 6px;
-}
+    .social-proof span {
+      font-weight: 700;
+      color: #10b981;
+    }
 
-.social-proof span {
-  font-weight: 700;
-  color: #10b981;
-}
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
 
-@keyframes pulseGreen {
-  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-}
+    /* Value Proposition Grid */
+    .value-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+    }
 
-/* Value Proposition Grid */
-.value-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.8rem;
-  margin-bottom: 1.2rem;
-}
+    .value-item {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 0.6rem 0.3rem;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
 
-.value-item {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
-  padding: 0.6rem 0.3rem;
-  text-align: center;
-  transition: all 0.2s ease;
-}
+    .value-item:hover {
+      background: rgba(56, 189, 248, 0.15);
+      transform: translateY(-2px);
+    }
 
-.value-item:hover {
-  background: rgba(56, 189, 248, 0.15);
-  transform: translateY(-2px);
-}
+    .value-item i {
+      font-size: 1.2rem;
+      color: #38bdf8;
+      display: block;
+      margin-bottom: 4px;
+    }
 
-.value-item i {
-  font-size: 1.2rem;
-  color: #38bdf8;
-  display: block;
-  margin-bottom: 4px;
-}
+    .value-item div {
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
 
-.value-item div {
-  font-size: 0.7rem;
-  font-weight: 600;
-}
+    .value-item small {
+      font-size: 0.6rem;
+      color: #94a3b8;
+    }
 
-.value-item small {
-  font-size: 0.6rem;
-  color: #94a3b8;
-}
+    /* Enhanced Telegram Button */
+    .telegram-btn-enhanced {
+      background: linear-gradient(95deg, #1f8ded, #3468ff);
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      border: none;
+      color: white;
+      transition: all 0.2s;
+      box-shadow: 0 6px 14px rgba(31, 141, 237, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
 
-/* Enhanced Telegram Button */
-.telegram-btn-enhanced {
-  background: linear-gradient(95deg, #1f8ded, #3468ff);
-  width: 100%;
-  padding: 0.9rem 1rem;
-  border-radius: 60px;
-  font-weight: 700;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-  border: none;
-  color: white;
-  transition: all 0.2s;
-  box-shadow: 0 6px 14px rgba(31, 141, 237, 0.3);
-  position: relative;
-  overflow: hidden;
-}
+    .telegram-btn-enhanced:hover {
+      transform: scale(1.01);
+      background: linear-gradient(95deg, #2f9ef5, #4f7aff);
+      box-shadow: 0 8px 20px rgba(31, 141, 237, 0.5);
+    }
 
-.telegram-btn-enhanced:hover {
-  transform: scale(1.01);
-  background: linear-gradient(95deg, #2f9ef5, #4f7aff);
-  box-shadow: 0 8px 20px rgba(31, 141, 237, 0.5);
-}
+    .telegram-btn-enhanced .btn-badge {
+      position: absolute;
+      right: 12px;
+      top: -8px;
+      background: #facc15;
+      color: #1a1a2e;
+      font-size: 0.6rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 800;
+      animation: bounce 1s infinite;
+    }
 
-.telegram-btn-enhanced .btn-badge {
-  position: absolute;
-  right: 12px;
-  background: #facc15;
-  color: #1a1a2e;
-  font-size: 0.6rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-weight: 800;
-  animation: bounce 1s infinite;
-}
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
-}
+    /* Guarantee Text */
+    .guarantee-text {
+      text-align: center;
+      font-size: 0.65rem;
+      color: #6c7a9e;
+      margin-top: 0.8rem;
+    }
 
-/* Guarantee Text */
-.guarantee-text {
-  text-align: center;
-  font-size: 0.65rem;
-  color: #6c7a9e;
-  margin-top: 0.8rem;
-}
+    .guarantee-text i {
+      margin-right: 4px;
+      color: #10b981;
+    }
 
-.guarantee-text i {
-  margin-right: 4px;
-  color: #10b981;
-}
-
-/* Responsive adjustments */
-@media (max-width: 520px) {
-  .value-grid {
-    gap: 0.5rem;
-  }
-  .value-item {
-    padding: 0.4rem 0.2rem;
-  }
-  .value-item i {
-    font-size: 1rem;
-  }
-  .value-item div {
-    font-size: 0.6rem;
-  }
-  .telegram-btn-enhanced {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-  }
-  .btn-badge {
-    display: none;
-  }
-}
+    /* Responsive adjustments */
+    @media (max-width: 520px) {
+      .value-grid {
+        gap: 0.5rem;
+      }
+      .value-item {
+        padding: 0.4rem 0.2rem;
+      }
+      .value-item i {
+        font-size: 1rem;
+      }
+      .value-item div {
+        font-size: 0.6rem;
+      }
+      .telegram-btn-enhanced {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+      }
+      .btn-badge {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -658,55 +608,47 @@ fbq('track', 'PageView');
         <p><i class="fas fa-check-circle"></i> Defined risk.</p>
         <p><i class="fas fa-check-circle"></i> Capital preservation first.</p>
       </div>
-      <!-- Telegram Button with Timer Display -->
-      <!-- ========== OPTIMIZED TELEGRAM SECTION ========== -->
-<div class="telegram-optimized-section">
-  
-  <!-- Social Proof Badge -->
-  <div class="social-proof" id="socialProof">
-    <i class="fas fa-users"></i>
-    <span id="memberCount">347+</span> active traders joined this week
-  </div>
-  
-  <!-- Value Proposition Cards -->
-  <div class="value-grid">
-    <div class="value-item">
-      <i class="fas fa-chart-line"></i>
-      <div>Daily Signals</div>
-      <small>87% win rate</small>
-    </div>
-    <div class="value-item">
-      <i class="fas fa-clock"></i>
-      <div>24/7 Market</div>
-      <small>Real-time analysis</small>
-    </div>
-    <div class="value-item">
-      <i class="fas fa-users"></i>
-      <div>Community</div>
-      <small>16,300+ traders</small>
-    </div>
-  </div>
-  
-  <!-- Enhanced Button with Urgency -->
-  <button id="telegramRedirectBtn" class="telegram-btn-enhanced">
-    <i class="fab fa-telegram-plane"></i> 
-    <span>GET FREE SIGNALS →</span>
-    <small class="btn-badge">Join 347 this week</small>
-  </button>
-  
-  <!-- Countdown Timer (subtle) -->
-  <div class="timer-container" id="timerContainer">
-    <div class="timer-bar">
-      <div class="timer-progress" id="timerProgress"></div>
-    </div>
-    <div class="timer-text" id="timerText">⏳ Auto-redirecting in 5 seconds...</div>
-  </div>
-  
-  <!-- Risk Reversal / Guarantee -->
-  <div class="guarantee-text">
-    <i class="fas fa-shield-alt"></i> Free forever • No spam • Unsubscribe anytime
-  </div>
-</div>
+      
+      <!-- ========== OPTIMIZED TELEGRAM SECTION (NO AUTO-REDIRECT) ========== -->
+      <div class="telegram-optimized-section">
+        
+        <!-- Social Proof Badge -->
+        <div class="social-proof" id="socialProof">
+          <i class="fas fa-users"></i>
+          <span id="memberCount">347+</span> active traders joined this week
+        </div>
+        
+        <!-- Value Proposition Cards -->
+        <div class="value-grid">
+          <div class="value-item">
+            <i class="fas fa-chart-line"></i>
+            <div>Daily Signals</div>
+            <small>87% win rate</small>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-clock"></i>
+            <div>24/7 Market</div>
+            <small>Real-time analysis</small>
+          </div>
+          <div class="value-item">
+            <i class="fas fa-users"></i>
+            <div>Community</div>
+            <small>16,300+ traders</small>
+          </div>
+        </div>
+        
+        <!-- Enhanced Button (Manual Click Only - NO AUTO REDIRECT) -->
+        <button id="telegramRedirectBtn" class="telegram-btn-enhanced">
+          <i class="fab fa-telegram-plane"></i> 
+          <span>GET FREE SIGNALS →</span>
+          <small class="btn-badge">Join 347 this week</small>
+        </button>
+        
+        <!-- Risk Reversal / Guarantee -->
+        <div class="guarantee-text">
+          <i class="fas fa-shield-alt"></i> Free forever • No spam • Unsubscribe anytime
+        </div>
+      </div>
     </div>
   </div>
 
@@ -771,96 +713,54 @@ fbq('track', 'PageView');
   </div>
 </div>
 
-<!-- ✅ FIXED SCRIPT - Button Click Working -->
+<!-- Simplified Script - Manual Button Click Only (NO AUTO-REDIRECT) -->
 <script>
   (function() {
-    console.log("Script loaded - waiting for DOM...");
+    console.log("Script loaded - Telegram button ready");
     
     // Your Telegram invite link
     const TELEGRAM_LINK = 'https://t.me/+XRlJ3bIMDsUxYWNk';
-    let redirectTimeout = null;
     
-    // Flag to track if redirect has happened
-    let hasRedirected = false;
-    
+    // Function to redirect to Telegram (manual click only)
     function redirectToTelegram() {
-      if (hasRedirected) {
-        console.log("Already redirected this session, but resetting flag for next click");
-        // Reset flag so button can be clicked again after redirect
-        hasRedirected = false;
-        return;
-      }
-      
       console.log("Redirecting to Telegram...");
-      hasRedirected = true;
-      
-      if (redirectTimeout) {
-        clearTimeout(redirectTimeout);
-        redirectTimeout = null;
+      try {
+        window.open(TELEGRAM_LINK, '_blank');
+      } catch(e) {
+        console.log("Popup blocked? Trying fallback...");
+        window.location.href = TELEGRAM_LINK;
       }
-      
-      window.open(TELEGRAM_LINK, '_blank');
-      
-      // Reset flag after 1 second so user can click again (if they return to the page)
-      setTimeout(function() {
-        if (hasRedirected) {
-          console.log("Resetting redirect flag - button will work again");
-          hasRedirected = false;
-        }
-      }, 1000);
     }
     
-    // Function to initialize button
+    // Initialize Telegram button
     function initTelegramButton() {
-      const btn = document.getElementById('telegramRedirectBtn');
-      if (btn) {
-        console.log("Telegram button found - attaching click listener");
-        // Remove existing listeners to avoid duplicates
-        const newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-        
-        newBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          console.log("Button clicked!");
-          redirectToTelegram();
-        });
-      } else {
-        console.log("Button not found! Retrying in 500ms...");
-        setTimeout(initTelegramButton, 500);
-        return;
-      }
-      
-      // Clear any existing timeout
-      if (redirectTimeout) {
-        clearTimeout(redirectTimeout);
-      }
-      
-      // Auto-redirect after 2 seconds (only if not already redirected)
-      redirectTimeout = setTimeout(function() {
-        if (!hasRedirected) {
-          console.log("Auto-redirect triggered after 2 seconds");
-          redirectToTelegram();
+      try {
+        const btn = document.getElementById('telegramRedirectBtn');
+        if (btn) {
+          console.log("Telegram button found - attaching click listener");
+          
+          // Remove old button and recreate to avoid duplicate listeners
+          const newBtn = btn.cloneNode(true);
+          btn.parentNode.replaceChild(newBtn, btn);
+          
+          newBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("Button clicked!");
+            redirectToTelegram();
+          });
+        } else {
+          console.log("Button not found! Retrying in 500ms...");
+          setTimeout(initTelegramButton, 500);
+          return;
         }
-      }, 2000);
-      
-      // Update timer text
-      let secondsLeft = 2;
-      const timerText = document.getElementById('timerText');
-      if (timerText) {
-        timerText.innerHTML = `⏳ Auto-redirecting in ${secondsLeft} seconds...`;
+      } catch(e) {
+        console.log("Error in initTelegramButton:", e.message);
+        setTimeout(initTelegramButton, 1000);
       }
-      
-      const countdownInterval = setInterval(function() {
-        secondsLeft--;
-        if (timerText && secondsLeft > 0 && !hasRedirected) {
-          timerText.innerHTML = `⏳ Auto-redirecting in ${secondsLeft} second${secondsLeft !== 1 ? 's' : ''}...`;
-        } else if (secondsLeft <= 0 || hasRedirected) {
-          clearInterval(countdownInterval);
-        }
-      }, 1000);
     }
     
-    // Start the initialization
+    // Start initialization
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initTelegramButton);
     } else {
@@ -890,6 +790,15 @@ fbq('track', 'PageView');
     if (twitter) twitter.href = '#';
     if (discord) discord.href = '#';
     if (youtube) youtube.href = '#';
+    
+    // Suppress extension errors
+    window.addEventListener('error', function(e) {
+      if (e.message && e.message.includes('A listener indicated an asynchronous response')) {
+        e.preventDefault();
+        console.log("Extension conflict error suppressed");
+        return false;
+      }
+    });
   })();
 </script>
 </body>
